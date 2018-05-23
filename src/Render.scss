@@ -1,0 +1,7 @@
+.custom-tab-class {
+  color: blue;
+
+  &.active {
+    border-bottom-color: red;
+  }
+}

@@ -1,0 +1,12 @@
+.nav-bar {
+  display: flex;
+}
+
+.link {
+  flex: 1 0 auto;
+  border-bottom: 4px solid grey;
+
+  &.active {
+    border-bottom-color: red;
+  }
+}
