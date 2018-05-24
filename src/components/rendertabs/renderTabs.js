@@ -23,10 +23,14 @@ class Tabs extends React.Component {
   handleActivate = (activeIndex) => this.setState({ activeIndex });
 
   childProps = (child, index) => {
+    console.log(child.type);
     const { activeIndex } = this.state;
     return {
       activeIndex,
-      onActivate: child.type === TabList ? (activeIndex) => this.handleActivate(activeIndex) : undefined
+      onActivate: child.type === TabList
+      ? (activeIndex) => this.handleActivate(activeIndex)
+      : undefined,
+      banana: child.type === TabList ? 'tablist' : 'banana'
     }
   }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default (children, childProps, renderProps) => {
-  console.log(children);
   if (typeof children === 'function') {
     return children(renderProps)
   }
