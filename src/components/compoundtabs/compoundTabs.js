@@ -40,6 +40,30 @@ class Tabs extends React.Component {
           return child
         }
       })
+    )
+
+    return (
+      <div>
+        <h2>active tab is: {activeIndex}</h2>
+        {
+          React.Children.map(children, (child, index) => {
+            if (child.type === TabPanels) {
+              return React.cloneElement(child, {
+                key: index,
+                activeIndex: activeIndex
+              })
+            } else if (child.type === TabList) {
+              return React.cloneElement(child, {
+                key: index,
+                activeIndex: this.state.activeIndex,
+                onActivate: (activeIndex) => this.handleActivate(activeIndex)
+              })
+            } else {
+              return child
+            }
+          })
+        }
+      </div>
     );
   };
 };

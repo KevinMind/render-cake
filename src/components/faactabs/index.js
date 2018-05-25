@@ -1,4 +1,5 @@
 export {
   default as Tabs,
   TabList,
-} from './renderTabs';
+  CustomTabList,
+} from './faacTabs';

@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames/bind';
 import { Tabs, TabList } from 'components/compoundtabs/';
-import { Tab, TabPanels, TabPanel } from 'components/common';
+import { Tab, NewTab, TabPanels, TabPanel } from 'components/common';
 
 import data from 'data';
 
@@ -14,6 +14,7 @@ class Home extends React.Component {
       <div>
         <h1>Compound Components</h1>
         <Tabs>
+          <div>Currently active tab is ????</div>
           <TabList className={cx('blue-text')}>
             {
               data.map(({ content, disabled }) => (

@@ -1,12 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import compoundTabs from './compoundTabs';
+import Tabs from './faacTabs';
 
 describe('compoundTabs', () => {
   it('should render compoundTabs with fail default', () => {
     const mounted = mount(
-      <compoundTabs
+      <Tabs
         default={false}
       />,
     );
@@ -15,4 +15,3 @@ describe('compoundTabs', () => {
 
   });
 });
-

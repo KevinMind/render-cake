@@ -6,9 +6,8 @@ export default (children, childProps, renderProps) => {
   }
   return (
     React.Children.map(children, (child, index) => {
-      const props = childProps(child, index);
       return React.cloneElement(child, {
-        ...props
+        ...childProps(child, index)
       })
     })
   );

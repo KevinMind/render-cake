@@ -1,5 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import renderWrapper from '../hoc';
+
+export class CustomTabList extends React.Component {
+
+  childProps = (child, index) => {
+    const { activeIndex, onActivate } = this.props;
+    return {
+      active: index === activeIndex,
+      onClick: () => onActivate(index),
+    };
+  };
+
+  doBanana = () => alert('banana be done yo.');
+
+  render() {
+    const { props: { children, activeIndex, onActivate }, childProps, doBanana } = this;
+    return renderWrapper(children, childProps, { activeIndex, onActivate, childProps, doBanana })
+  }
+};
+
 
 export class TabList extends React.Component {
 
@@ -23,14 +43,15 @@ class Tabs extends React.Component {
   handleActivate = (activeIndex) => this.setState({ activeIndex });
 
   childProps = (child, index) => {
-    console.log(child.type);
+    const { tabList } = this.props;
+    const isTabList = child.type === tabList || child === tabList;
     const { activeIndex } = this.state;
     return {
       activeIndex,
-      onActivate: child.type === TabList
+      onActivate: isTabList
       ? (activeIndex) => this.handleActivate(activeIndex)
-      : undefined,
-      banana: child.type === TabList ? 'tablist' : 'banana'
+      : null,
+      banana: isTabList ? 'tablist' : 'banana'
     }
   }
 
@@ -38,6 +59,17 @@ class Tabs extends React.Component {
     const { props: { children }, state: { activeIndex }, handleActivate, childProps } = this;
     return renderWrapper(children, childProps, { activeIndex, handleActivate, childProps });
   };
+};
+
+Tabs.propTypes = {
+  tabList: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ])
+}
+
+Tabs.defaultProps = {
+  tabList: TabList,
 };
 
 export default Tabs;
