@@ -44,6 +44,7 @@ class Tabs extends React.Component {
 
   childProps = (child, index) => {
     const { tabList } = this.props;
+    // this can probably be implemented better. We are essentially trying to identify a default childType or a specific child based on some property.
     const isTabList = child.type === tabList || child === tabList;
     const { activeIndex } = this.state;
     return {

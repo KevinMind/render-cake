@@ -28,9 +28,12 @@ export const NewTab = ({ children, disabled, active, onClick, className }) => (
 
 export const TabPanels = ({ children, activeIndex, className }) => (
   <div className={cx('tab-panels', className)}>
-    <div><span>deeply<span>nested<Huge className={cx(className)}>item</Huge></span></span></div>
     {children[activeIndex]}
   </div>
 );
 
 export const TabPanel = (props) => <div className={cx('tab-panel')}>{props.children}</div>;
+
+
+export const Title = ({ label }) => <h2>{label}</h2>;
+export const IMG = ({ src }) => <img src={src} style={{height: '500px', width: 'auto' }} />;

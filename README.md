@@ -3,29 +3,42 @@
 ## An hoc that conditionally renders children or render props.
 
 
+
+## 2.0 challenges:
+
+1. this.props.render vs. this.props.children. (leaning in favor of children)
+2. one childProps or split specificProps, someOtherProps... (favor single childProps function because it is the most flexible, se hoc hidden return function for selectively applying props for children of non functional render)
+3. developer experience, understanding what available props for state component are.
+4. could use context api (should not influence implementation of this, just depends on react version supporting it.)
+
+
+
+
 ##Main Problems renderWrapper solves:
 
 1. customizing render of nested children from complex components.
 
-<component>
+<UiComponent>
   <child>
     <grandchild classname='can-not-touch' />
   </child>
-</component>
+</UiComponent>
 
-2. separates presentation development, and implementation development.
+2. separates presentation and state management within nested functional components.
 
 I can change anything about render function without touching my parent component.
 
 The key is:
 
-1. function focused components consider their rendering a black box.
-All they care about is managing their state, generating render data, and spitting it out.
+1. components that manage the state of children components should consider their rendering a black box.
+All they care about is managing their state, generating render data, and spitting it out. How that data is applied should not be a concern.
 
-2. presentation focused components consider the data they receive a black box.
-They are given data, and they work with it. Default render components have the
-implementation of the render baked in, easy, quick, hard to customize. Render functions
-do the same thing, but let you control the render to your hearts content.
+2. components consider the data they receive a black box.
+They are given data, and they work with it. If we consider both theses axioms true then the ideal functional child bearing component is
+
+<MainDataManager state={{ childProp: 'banana', childMethod: () => this.setState({ do: 'something' })}}>
+
+</MainDataManager>
 
 ##DownSides:
 
